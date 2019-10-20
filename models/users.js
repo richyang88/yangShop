@@ -58,7 +58,7 @@ function createUser(){
         gender: "Female"
     })
 }
-
+ createUser();
 
 /* Step 5
  *
