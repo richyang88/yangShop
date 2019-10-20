@@ -47,11 +47,11 @@ function deleteUserById(userId){
         .findOneAndDelete({_id: userId});
 }
 
-function updateShopById(userId, userData){
+function updateUseryId(userId, userData){
     return UserModel.findOneAndUpdate({_id: userId}, userData);
 }
 
-function createShop(){
+function createUser(){
     return UserModel.create({
         name: "Mickey",
         age: 33,
@@ -70,6 +70,6 @@ module.exports = {
   getAllUsers,
   getUserById,
   deleteUserById,
-  updateShopById,
-  createShop,
+  updateUseryId,
+  createUser,
 }

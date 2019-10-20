@@ -36,12 +36,32 @@ const templateRouter = express.Router()
 /* Step 5
  *
  * TODO: delete this handler; it's just a sample
- */ 
+ */
 templateRouter.get('/', (req, res) => {
   res.json(templateApi.getHelloWorldString())
 })
 templateRouter.get('/createUser', (req, res) => {
   res.json(userApi.createShop())
+})
+
+templateRouter.post('/', async (req, res) => {
+  const userData = req.body;
+  try {
+    const userCreated = await userApi.createUser(userData);
+    res.status(201).json(userCreated);
+    return;
+  } catch (e) {
+    const message = `failed to create shop using data from request body
+    ${JSON.stringify(shopData, null, 4)}
+    , please check request body and try again`;
+    console.log(message);
+    console.log(e);
+    res.status(500).json({
+      error: e,
+      message,
+    });
+    return;
+  }
 })
 
 /* Step 6
