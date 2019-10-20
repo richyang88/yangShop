@@ -44,7 +44,7 @@ const SampleCollection = mongoose.model('Sample', SampleModelSchema)
  *
  */
 function getHelloWorldString() {
-  return 'hello world'
+  return 'hello world backend'
 }
 
 /* Step 5

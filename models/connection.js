@@ -18,11 +18,12 @@ const connectionString = process.env.MONGODB_URI || "mongodb://localhost/<db-nam
  *
  * NOTE: newUrlParser diables a deprecation warning
  */
-mongoose.connect(connectionString, {'useUnifiedTopology': true})
+mongoose.connect(connectionString, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true })
   .then(() => {
     console.log("connected to mongo at: " + connectionString);
   });
 
+  
 
 /* Export the mongoose object.
  *
