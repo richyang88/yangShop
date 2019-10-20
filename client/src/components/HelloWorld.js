@@ -15,7 +15,7 @@ export default class HelloWorld extends Component {
     *
     */
     state = {
-        message: ''
+        message: 'Hello'
     }
 
     /* Step 4
