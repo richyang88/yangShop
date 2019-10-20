@@ -19,16 +19,16 @@ const UserSchema = new mongoose.Schema({
  * NOTE: skip this if you are not using mongoose
  *
  */
-const UserModel = mongoose.model('Sample', UserSchema)
+const UserModel = mongoose.model('User', UserSchema)
 
 /* Step 4
  *
  * TODO: delete this it's just a sample
  *
  */
-function getHelloWorldString() {
-  return 'hello world'
-}
+// function getHelloWorldString() {
+//   return 'hello world'
+// }
 
 //get all users
 function getAllUsers(){
@@ -66,7 +66,7 @@ function createShop(){
  * object
  */
 module.exports = {
-  getHelloWorldString,
+//   getHelloWorldString,
   getAllUsers,
   getUserById,
   deleteUserById,
