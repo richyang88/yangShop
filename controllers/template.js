@@ -16,6 +16,7 @@ const express = require('express')
  * 
  */
 const templateApi = require('../models/template.js')
+const userApi = require('../models/users.js')
 
 /* Step 3 
  * 
@@ -38,6 +39,9 @@ const templateRouter = express.Router()
  */ 
 templateRouter.get('/', (req, res) => {
   res.json(templateApi.getHelloWorldString())
+})
+templateRouter.get('/createUser', (req, res) => {
+  res.json(userApi.createShop())
 })
 
 /* Step 6

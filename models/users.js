@@ -8,7 +8,9 @@ const mongoose = require('./connection.js')
  *
  */
 const UserSchema = new mongoose.Schema({
- name: String
+ name: String,
+ age: Number,
+ gender: String
 })
 
 /* Step 3
@@ -17,7 +19,7 @@ const UserSchema = new mongoose.Schema({
  * NOTE: skip this if you are not using mongoose
  *
  */
-const UserCollection = mongoose.model('Sample', UserSchema)
+const UserModel = mongoose.model('Sample', UserSchema)
 
 /* Step 4
  *
@@ -28,11 +30,46 @@ function getHelloWorldString() {
   return 'hello world'
 }
 
+//get all users
+function getAllUsers(){
+    return UserModel.find();
+}
+
+
+//get single user
+function getUserById(userId){
+    return UserModel
+        .findById(userId)
+}
+
+function deleteUserById(userId){
+    return UserModel
+        .findOneAndDelete({_id: userId});
+}
+
+function updateShopById(userId, userData){
+    return UserModel.findOneAndUpdate({_id: userId}, userData);
+}
+
+function createShop(){
+    return UserModel.create({
+        name: "Mickey",
+        age: 33,
+        gender: "Female"
+    })
+}
+
+
 /* Step 5
  *
  * TODO: export all functions from this file by adding their names as keys to this
  * object
  */
 module.exports = {
-  getHelloWorldString
+  getHelloWorldString,
+  getAllUsers,
+  getUserById,
+  deleteUserById,
+  updateShopById,
+  createShop,
 }
