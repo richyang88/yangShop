@@ -26,7 +26,9 @@ global.sampleModel = [];
  * NOTE: skip this if you are not using mongoose
  *
  */
-const SampleModelSchema = mongoose.Schema;
+const SampleModelSchema = new mongoose.Schema({
+ name: String
+})
 
 /* Step 3
  *

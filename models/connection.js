@@ -18,7 +18,7 @@ const connectionString = process.env.MONGODB_URI || "mongodb://localhost/<db-nam
  *
  * NOTE: newUrlParser diables a deprecation warning
  */
-mongoose.connect(mongoConnectionString, {'useUnifiedTopology': true})
+mongoose.connect(connectionString, {'useUnifiedTopology': true})
   .then(() => {
     console.log("connected to mongo at: " + connectionString);
   });
