@@ -9,7 +9,7 @@
  * NOTE: skip this if you are not using mongoose
  *
  */
-//const mongoose = require('./connection.js')
+const mongoose = require('./connection.js')
 
 /* Step 1 alternative
  *
@@ -26,9 +26,7 @@ global.sampleModel = [];
  * NOTE: skip this if you are not using mongoose
  *
  */
-//const SampleModelSchema = new mongoose.Schema({
-//  name: String
-//})
+const SampleModelSchema = mongoose.Schema;
 
 /* Step 3
  *
@@ -36,7 +34,7 @@ global.sampleModel = [];
  * NOTE: skip this if you are not using mongoose
  *
  */
-//const SampleCollection = mongoose.model('Sample', SampleModelSchema)
+const SampleCollection = mongoose.model('Sample', SampleModelSchema)
 
 /* Step 4
  *
