@@ -11,7 +11,7 @@ export default class userListView extends Component {
 
     state = {
         userList: [],
-        newuserName: '',
+        newUserName: '',
     }
 
     componentDidMount() {
@@ -33,7 +33,7 @@ export default class userListView extends Component {
 
     //  Stretch goal is to update page after every change
 
-    createNewUer = () => {
+    createNewUser = () => {
         const newUser = {
             name: this.state.newUserName,
         };
@@ -42,7 +42,7 @@ export default class userListView extends Component {
                 console.log(response);
                 this.setState({newUserName: ''})
 
-                this.refreshusers()
+                this.refreshUsers()
             })
         // create new user using 'newuserName' in state
         //    route for creation is '/api/user'
@@ -92,9 +92,9 @@ export default class userListView extends Component {
             })
     }
 
-    onNewusereNameChange = (event) => {
-        const newuserName = event.target.value;
-        this.setState({newuserName: newuserName})
+    onNewUsereNameChange = (event) => {
+        const newUserName = event.target.value;
+        this.setState({newUserName: newUserName})
     }
 
 
@@ -104,9 +104,9 @@ export default class userListView extends Component {
     render () {
         const userListElements = this.state.userList.map((user) => {
             return (
-            <userViewItem
+            <userViewItem 
                 userId={user._id}
-                onuserDeleteClick={this.onuserDeleteClick}
+                onUserDeleteClick={this.onUserDeleteClick}
                 name={user.name}
                 description={user.description}
                 isLiked={user.isLiked}/>)
@@ -114,17 +114,17 @@ export default class userListView extends Component {
         return (
         <div className="user-list-container">
             
-            <div className="header">user list</div>
+            <div className="header">User list</div>
 
             <input
                 type="string"
-                name="newuserName"
+                name="newUserName"
                 placeholder="user Name"
                 required="required"
                 onChange={this.onNewUsereNameChange}
                 value={this.state.newUserName}/>
             <button
-                onClick={() => this.createNewuser()}>Create user</button>
+                onClick={() => this.createNewUser()}>Create user</button>
 
             {userListElements}
 

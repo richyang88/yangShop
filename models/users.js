@@ -51,14 +51,18 @@ function updateUseryId(userId, userData){
     return UserModel.findOneAndUpdate({_id: userId}, userData);
 }
 
-function createUser(){
-    return UserModel.create({
-        name: "Mickey",
-        age: 33,
-        gender: "Female"
-    })
+function addOneUser(userId){
+    return UserModel.create(userId)
 }
- createUser();
+
+// function createUser(){
+//     return UserModel.create({
+//         name: "Mickey",
+//         age: 33,
+//         gender: "Female"
+//     })
+// }
+//  createUser();
 
 /* Step 5
  *
@@ -72,4 +76,5 @@ module.exports = {
   deleteUserById,
   updateUseryId,
   createUser,
+  addOneUser,
 }

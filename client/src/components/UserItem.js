@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 
-export default class ShopListItem extends Component {
+export default class UserItem extends Component {
 
     render() {
         const {
