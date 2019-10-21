@@ -57,13 +57,13 @@ export default class HelloWorld extends Component {
     //         })
     // }
 
-    refreshUsers=()=>{
+    refreshUsers = () => {
         axios.get('/getAllUsers')
-            .then((response)=>{
+            .then((response) => {
                 console.log(response)
-                this.setState({userList: response.data})
+                this.setState({ userList: response.data })
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log(err)
             })
     }
@@ -74,44 +74,45 @@ export default class HelloWorld extends Component {
     *   and replace it with your own custom jsx template
     *
     */
-    // render() {
-    //     return (
-    //         <div>
-    //             {/* Accessing the value of message from the state object */}
-    //             {this.state.map(userList}
-    //         </div>
-    //     )
-    // }
-
-    render () {
-        const userListElements = this.state.userList.map((user) => {
-            return (
-            <UserItemView
-                userId={user._id}
-                onShopDeleteClick={this.onUserDeleteClick}
-                name={user.name}
-                age={user.age}
-                gender={user.gender}
-
-                />)
-        })
+    render() {
         return (
-        <div className="user-list-container">
+            <div>
+                {/* Accessing the value of message from the state object */}
+                {this.state.userList}
 
-            <div className="header">User list</div>
-
-            <input
-                type="string"
-                name="newShopName"
-                placeholder="Shop Name"
-                required="required"
-                onChange={this.onNewShopeNameChange}
-                value={this.state.newShopName}/>
-            <button
-                onClick={() => this.createNewShop()}>Create Shop</button>
-
-            {userListElements}
-
-        </div>)
+            </div>
+        )
     }
+
+    // render () {
+    // const userListElements = this.state.userList.map((user) => {
+    //     return (
+    //     <UserItemView
+    //         userId={user._id}
+    //         onShopDeleteClick={this.onUserDeleteClick}
+    //         name={user.name}
+    //         age={user.age}
+    //         gender={user.gender}
+
+    //         />)
+    // })
+    // return (
+    // <div className="user-list-container">
+
+    //     <div className="header">User list</div>
+
+    //     <input
+    //         type="string"
+    //         name="newShopName"
+    //         placeholder="Shop Name"
+    //         required="required"
+    //         onChange={this.onNewShopeNameChange}
+    //         value={this.state.newShopName}/>
+    //     <button
+    //         onClick={() => this.createNewShop()}>Create Shop</button>
+
+    //     {userListElements}
+
+    // </div>)
+    // }
 }

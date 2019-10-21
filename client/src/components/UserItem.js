@@ -15,7 +15,9 @@ export default class ShopListItem extends Component {
 
         return (
         <div className="user-list-item" key={userId}>
-            <div className="title">{name || ''}</div>
+            <div className="name">{name || ''}</div>
+            <div className="age">{age || ''}</div>
+            <div className="gender">{gender || ''}</div>
     
 
             <i className="material-icons delete"
