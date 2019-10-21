@@ -72,7 +72,7 @@ saleRouter.get("/", async (req, res) =>{
 //   res.json(saleApi.createsale())
 // })
 
-saleRouter.post('/', async (req, res) => {
+saleRouter.post('/createSale', async (req, res) => {
   const saleData = req.body;
   try {
     const saleCreated = await saleApi.createsale(saleData);

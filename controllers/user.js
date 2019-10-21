@@ -72,7 +72,7 @@ userRouter.get("/", async (req, res) =>{
 //   res.json(userApi.createUser())
 // })
 
-userRouter.post('/', async (req, res) => {
+userRouter.post('/user', async (req, res) => {
   const userData = req.body;
   try {
     const userCreated = await userApi.createUser(userData);
