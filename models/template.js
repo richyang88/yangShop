@@ -18,7 +18,7 @@ const mongoose = require('./connection.js')
  * your data once you stop running your server.
  *
  */
-global.sampleModel = [];
+// global.sampleModel = [];
 
 /* Step 2
  *

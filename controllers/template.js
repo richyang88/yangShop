@@ -27,6 +27,7 @@ const userApi = require('../models/users.js')
  * `shopRouter`)
  */
 const templateRouter = express.Router()
+const userRouter = express.Router()
 
 /* Step 4
  * 
@@ -37,14 +38,18 @@ const templateRouter = express.Router()
  *
  * TODO: delete this handler; it's just a sample
  */
-templateRouter.get('/', (req, res) => {
-  res.json(templateApi.getHelloWorldString())
-})
-templateRouter.get('/createUser', (req, res) => {
-  res.json(userApi.createShop())
+// templateRouter.get('/', (req, res) => {
+//   res.json(templateApi.getHelloWorldString())
+// })
+userRouter.get('/getUser', (req, res) => {
+  res.json(userApi.getAllUsers())
 })
 
-templateRouter.post('/', async (req, res) => {
+// userRouter.get('/createUser', (req, res) => {
+//   res.json(userApi.createUser())
+// })
+
+userRouter.post('/', async (req, res) => {
   const userData = req.body;
   try {
     const userCreated = await userApi.createUser(userData);
@@ -70,5 +75,6 @@ templateRouter.post('/', async (req, res) => {
  *
  */
 module.exports = {
-  templateRouter
+  templateRouter,
+  userRouter
 }
