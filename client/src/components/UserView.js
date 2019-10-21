@@ -80,7 +80,9 @@ export default class ShopListView extends Component {
                 onFavoriteClick={this.onFavoriteClick}
                 onUnFavoriteClick={this.onUnFavoriteClick}
                 onShopDeleteClick={this.onShopDeleteClick}
+                
                 name={shop.name}
+
                 age={shop.age}
                 gender={shop.gender}
                 
