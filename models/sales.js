@@ -17,7 +17,7 @@ const SaleSchema = new mongoose.Schema({
  * NOTE: skip this if you are not using mongoose
  *
  */
-const SaleModel = mongoose.model('User', SaleSchema)
+const SaleModel = mongoose.model('Sale', SaleSchema)
 
 /* Step 4
  *
@@ -41,12 +41,12 @@ function getOneSale(sale_id){
 }
 
 //create user
-function addOneUser(name){
+function addOneSale(name){
     return SaleModel
         .create(name)
 }
 
-function updateUseryId(saleId, saleData){
+function updateSaleId(saleId, saleData){
     return SaleModel.findOneAndUpdate({_id: saleId}, saleData);
 }
 
