@@ -4,6 +4,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import UserItemView from './UserItem';
+
 /* Step 2
  * Rename this class to reflect the component being created
  *
@@ -16,7 +18,7 @@ export default class HelloWorld extends Component {
     */
     state = {
         userList: [],
-        newUserName:'',
+        // newUserName:'',
     }
 
     /* Step 4
@@ -72,12 +74,44 @@ export default class HelloWorld extends Component {
     *   and replace it with your own custom jsx template
     *
     */
-    render() {
+    // render() {
+    //     return (
+    //         <div>
+    //             {/* Accessing the value of message from the state object */}
+    //             {this.state.map(userList}
+    //         </div>
+    //     )
+    // }
+
+    render () {
+        const userListElements = this.state.userList.map((user) => {
+            return (
+            <UserItemView
+                userId={user._id}
+                onShopDeleteClick={this.onUserDeleteClick}
+                name={user.name}
+                age={user.age}
+                gender={user.gender}
+
+                />)
+        })
         return (
-            <div>
-                {/* Accessing the value of message from the state object */}
-                <h1>{this.state.message}</h1>
-            </div>
-        )
+        <div className="user-list-container">
+
+            <div className="header">User list</div>
+
+            <input
+                type="string"
+                name="newShopName"
+                placeholder="Shop Name"
+                required="required"
+                onChange={this.onNewShopeNameChange}
+                value={this.state.newShopName}/>
+            <button
+                onClick={() => this.createNewShop()}>Create Shop</button>
+
+            {userListElements}
+
+        </div>)
     }
 }
