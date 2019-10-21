@@ -41,8 +41,15 @@ const userRouter = express.Router()
 // templateRouter.get('/', (req, res) => {
 //   res.json(templateApi.getHelloWorldString())
 // })
-userRouter.get('/getUser', (req, res) => {
-  res.json(userApi.getAllUsers())
+
+userRouter.get("/getAllUsers", function (req, res) {
+  userApi.getAllUsers()
+    .then((allUsers) => {
+      res.json({ allUsers })
+    })
+    .catch((error) => {
+      console.log(error) //will show error in console
+    })
 })
 
 // userRouter.get('/createUser', (req, res) => {
