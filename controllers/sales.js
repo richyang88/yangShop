@@ -16,7 +16,7 @@ const express = require('express')
  * 
  */
 // const templateApi = require('../models/template.js')
-const userApi = require('../models/users.js')
+const saleApi = require('../models/sales.js')
 
 /* Step 3 
  * 
@@ -27,7 +27,7 @@ const userApi = require('../models/users.js')
  * `shopRouter`)
  */
 const templateRouter = express.Router()
-const userRouter = express.Router()
+const saleRouter = express.Router()
 
 /* Step 4
  * 
@@ -42,21 +42,21 @@ const userRouter = express.Router()
 //   res.json(templateApi.getHelloWorldString())
 // })
 
-userRouter.get("/", async (req, res) =>{
-  // userApi.getAllUsers()
-  //   .then((allUsers) => {
-  //     res.json({ allUsers })
+saleRouter.get("/", async (req, res) =>{
+  // saleApi.getAllsales()
+  //   .then((allsales) => {
+  //     res.json({ allsales })
   //   })
   //   .catch((error) => {
   //     console.log(error) //will show error in console
   //   })
   try {
-    const retrievedUsers = await userApi.getAllUsers();
-    console.log(retrievedUsers);
-    res.status(200).json(retrievedUsers);
+    const retrievedsales = await saleApi.getAllsales();
+    console.log(retrievedsales);
+    res.status(200).json(retrievedsales);
     return;
 } catch(e) {
-    const message = `Failed to retrieve all users.
+    const message = `Failed to retrieve all sales.
         Please check mongod service and make sure it is running`;
     console.log(message)
     console.error(e);
@@ -68,15 +68,15 @@ userRouter.get("/", async (req, res) =>{
 }
 })
 
-// userRouter.get('/createUser', (req, res) => {
-//   res.json(userApi.createUser())
+// saleRouter.get('/createsale', (req, res) => {
+//   res.json(saleApi.createsale())
 // })
 
-userRouter.post('/', async (req, res) => {
-  const userData = req.body;
+saleRouter.post('/', async (req, res) => {
+  const saleData = req.body;
   try {
-    const userCreated = await userApi.createUser(userData);
-    res.status(201).json(userCreated);
+    const saleCreated = await saleApi.createsale(saleData);
+    res.status(201).json(saleCreated);
     return;
   } catch (e) {
     const message = `failed to create shop using data from request body
@@ -99,5 +99,5 @@ userRouter.post('/', async (req, res) => {
  */
 module.exports = {
   // templateRouter,
-  userRouter
+  saleRouter
 }

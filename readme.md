@@ -1,31 +1,27 @@
-# mern-template-project
+# SEI23-Project3
+## Yang Shop
 
-# Setup A New Project From This Template
+Yang Shop. This is an app I'm building for my parent's grocery store. It will help with the customers and vendors. This will allow us to remember customer requests easier and also to submit requests to vendors. 
 
-If you are starting a new project do the following:
+* [Deployed App](https://lit-oasis-02476.herokuapp.com/)
+* [Project Board](https://github.com/richyang88/yangShop/projects/1)
 
-1. copy/download this directory to where you new project is located and rename
-   it to the name of your project.
-1. change your directory (`cd`) into the copied project template
-1. `npm install`
-1. `npm run dev`
-1. Open a new browser window and navigate to the URL http://localhost:3000/
-    here you should see `hello world` displayed after page load
-    updates should show up here automatically
-1. see the `client/src` `readme.md` file for more information on the react project
-
-# Setup A New Project Without This Template
-
-If you want to start a project without using this template directory do the
-following:
+## Technologies Used:
+* React
+* Express
+* MongDB
+* Node.js
+* HTML
+* CSS
 
 
-1. `mkdir <project-name>`
-1. `cd <project-name>`
-1. `echo "# <project-name>" > readme.md`
-1. `git init`
-1. `git add readme.md `
-1. `git commit -m "init repo with readme.md"`
-1. `npm init`
-1. `mkdir models views controllers`
-1. `touch ./server.js`
+## ERD
+
+![ERD](client/src/images/yangERD.png)
+
+
+## Wireframes
+
+![Home](client/src/wireFrame/yangWire.jpg)
+
+

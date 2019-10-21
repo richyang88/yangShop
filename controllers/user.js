@@ -13,7 +13,7 @@ const userRouter = express.Router({
 // REQ HANDLERS ****************
 
 // GET ALL USERS
-userRouter.get("/activities/:activitiesId/users", function (req, res) {
+userRouter.get("/", function (req, res) {
   userApi.getAllUsers()
     .then((allUsers) => {
       // RENDER NOT CREATED YET
@@ -26,7 +26,7 @@ userRouter.get("/activities/:activitiesId/users", function (req, res) {
 })
 
 // CREATE NEW USERS
-userRouter.post("/activities/:activitiesId/users", function (req, res) {
+userRouter.post("/", function (req, res) {
   const newUser = req.body
   newUser.activity_id = req.params.activitiesId
   userApi.addUser(newUser)
@@ -40,7 +40,7 @@ userRouter.post("/activities/:activitiesId/users", function (req, res) {
 })
 
 // CREATE USERS PATH
-userRouter.get("/activities/:activitiesId/users/new", function (req, res) {
+userRouter.get("/new", function (req, res) {
   userApi.addUser(req.params.activitiesId)
     .then((getUsers) => {
       // res.send({ getUsers })
@@ -52,7 +52,7 @@ userRouter.get("/activities/:activitiesId/users/new", function (req, res) {
 })
 
 // RENDER CREATEFORM
-userRouter.get("/activities/:activitiesId/users/add", function (req, res) {
+userRouter.get("/add", function (req, res) {
   // RENDER NOT CREATED YET
   // res.render("usersViewPath", {
   // })
@@ -60,7 +60,7 @@ userRouter.get("/activities/:activitiesId/users/add", function (req, res) {
 })
 
 // GET ONE USER BY userId
-userRouter.get("/activities/:activitiesId/users/:usersId", function (req, res) {
+userRouter.get("/:usersId", function (req, res) {
   userApi.getOneUser(req.params.usersId)
     .then((usersFromDb) => {
       // RENDER NOT CREATED YET
@@ -72,29 +72,29 @@ userRouter.get("/activities/:activitiesId/users/:usersId", function (req, res) {
     })
 })
 
-// EDIT USER
-userRouter.put("/activities/:activitiesId/users/:usersId", function (req, res) {
-  userApi.updateUser(req.params.usersId, req.body)
-    .then((users) => {
-      // res.redirect("/users")
-      res.json(users)
-    })
-    .catch((error) => {
-      console.log(error) //will show error in console
-    })
-})
+// // EDIT USER
+// userRouter.put("/:usersId", function (req, res) {
+//   userApi.updateUser(req.params.usersId, req.body)
+//     .then((users) => {
+//       // res.redirect("/users")
+//       res.json(users)
+//     })
+//     .catch((error) => {
+//       console.log(error) //will show error in console
+//     })
+// })
 
-// DELETE USER
-userRouter.delete("/activities/:activitiesId/users/:usersId", function (req, res) {
-  userApi.deleteUser(req.params.usersId)
-    .then((users) => {
-      // res.redirect("/users") //redirects to "/", can use any url, etc.
-      res.json(users)
-    })
-    .catch((error) => {
-      console.log(error) //will show error in console
-    })
-})
+// // DELETE USER
+// userRouter.delete("/:usersId", function (req, res) {
+//   userApi.deleteUser(req.params.usersId)
+//     .then((users) => {
+//       // res.redirect("/users") //redirects to "/", can use any url, etc.
+//       res.json(users)
+//     })
+//     .catch((error) => {
+//       console.log(error) //will show error in console
+//     })
+// })
 
 //  IMPORT ROUTERS
 module.exports = {

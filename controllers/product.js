@@ -1,97 +1,103 @@
-// IMPORT EXPRESS
+/* Step 1 import express
+ *
+ */
 const express = require('express')
 
-// IMPORT API FROM MODELS
-const activityApi = require('../models/products.js')
+/* Step 2
+ *
+ * Import the api files from the models
+ *
+ * TODO: change the file path to the models file you'll need to use.
+ * TODO: rename this from `templateApi` to something more sensible (e.g:
+ * `shopsAPI`)
+ *
+ * NOTE: You may need to import more than one API to create the 
+ * controller you need.
+ * 
+ */
+// const templateApi = require('../models/template.js')
+const productApi = require('../models/products.js')
 
-// CREATE NEW ROUTER TO CONTAIN ALL REQ HANDLERS
-const activityRouter = express.Router()
+/* Step 3 
+ * 
+ * Create a new router.
+ *
+ * the router will "contain" all the request handlers that you define in this file.
+ * TODO: rename this from templateRouter to something that makes sense. (e.g:
+ * `shopRouter`)
+ */
+const templateRouter = express.Router()
+const productRouter = express.Router()
 
-// REQ HANDLERS ****************
+/* Step 4
+ * 
+ * TODO: Put all request handlers here
+ */
 
-// GET ALL ACTIVITIES
-activityRouter.get("/activities", function (req, res) {
-  activityApi.getAllActivities()
-    .then((allActivities) => {
-      // RENDER NOT CREATED YET
-      // res.render("activitiesViewPath", {allActivities})
-      res.json({ allActivities })
-    })
-    .catch((error) => {
-      console.log(error) //will show error in console
-    })
+/* Step 5
+ *
+ * TODO: delete this handler; it's just a sample
+ */
+// templateRouter.get('/', (req, res) => {
+//   res.json(templateApi.getHelloWorldString())
+// })
+
+productRouter.get("/", async (req, res) =>{
+  // productApi.getAllproducts()
+  //   .then((allproducts) => {
+  //     res.json({ allproducts })
+  //   })
+  //   .catch((error) => {
+  //     console.log(error) //will show error in console
+  //   })
+  try {
+    const retrievedProduct = await productApi.getAllProduct();
+    console.log(retrievedProduct);
+    res.status(200).json(retrievedProduct);
+    return;
+} catch(e) {
+    const message = `Failed to retrieve all products.
+        Please check mongod service and make sure it is running`;
+    console.log(message)
+    console.error(e);
+     res.status(500).json({
+         error: e,
+         message,
+     });
+     return;
+}
 })
 
-// CREATE NEW ACTIVITIES
-activityRouter.post("/activities", function (req, res) {
-  activityApi.addActivity(req.body)
-    .then((activities) => {
-      // res.redirect("/activities")
-      res.json(activities)
-    })
-    .catch((error) => {
-      console.log(error) //will show error in console
-    })
+// productRouter.get('/createproduct', (req, res) => {
+//   res.json(productApi.createproduct())
+// })
+
+productRouter.post('/', async (req, res) => {
+  const productData = req.body;
+  try {
+    const productCreated = await productApi.createproduct(productData);
+    res.status(201).json(productCreated);
+    return;
+  } catch (e) {
+    const message = `failed to create shop using data from request body
+    ${JSON.stringify(shopData, null, 4)}
+    , please check request body and try again`;
+    console.log(message);
+    console.log(e);
+    res.status(500).json({
+      error: e,
+      message,
+    });
+    return;
+  }
 })
 
-// CREATE ACTIVITIES PATH
-activityRouter.get("/activities/new", function (req, res) {
-  activityApi.addActivity(req.params.activitiesId)
-    .then((getActivities) => {
-      // res.send({getActivities})
-      res.json({ getActivities })
-    })
-    .catch((error) => {
-      console.log(error) //will show error in console
-    })
-})
-
-// RENDER CREATEFORM
-activityRouter.get("/activities/add", function (req, res) {
-  // RENDER NOT CREATED YET
-  // res.render("activitiesViewPath", {
-  // })
-  res.json("ok")
-})
-
-// GET ONE ACTIVITY BY activityId
-activityRouter.get("/activities/:activitiesId", function (req, res) {
-  activityApi.getOneActivity(req.params.activitiesId)
-    .then((activitiesFromDb) => {
-      // RENDER NOT CREATED YET
-      // res.render("activitiesViewPath", {_id: req.params.activitiesId, activitiesFromDb})
-      res.json(activitiesFromDb)
-    })
-    .catch((error) => {
-      console.log(error) //will show error in console
-    })
-})
-
-// EDIT ACTIVITY
-activityRouter.put("/activities/:activitiesId", function (req, res) {
-  activityApi.updateActivity(req.params.activitiesId, req.body)
-    .then((activities) => {
-      // res.redirect("/activities")
-      res.json(activities)
-    })
-    .catch((error) => {
-      console.log(error) //will show error in console
-    })
-})
-
-// DELETE ACTIVITY
-activityRouter.delete("/activities/:activitiesId", function (req, res) {
-  activityApi.deleteActivity(req.params.activitiesId)
-    .then((activities) => {
-      // res.redirect("/activities") //redirects to "/", can use any url, etc.
-      res.json(activities)
-    })
-    .catch((error) => {
-      console.log(error) //will show error in console
-    })
-})
-
-//  IMPORT ROUTERS
+/* Step 6
+ *
+ * Export the router from the file.
+ *
+ */
 module.exports = {
-  activityRouter
+  // templateRouter,
+  productRouter
 }

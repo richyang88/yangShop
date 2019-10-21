@@ -12,7 +12,7 @@ export default class userListView extends Component {
 
     state = {
         userList: [],
-        newUserName: '',
+        // newUserName: '',
     }
 
     componentDidMount() {
@@ -26,7 +26,7 @@ export default class userListView extends Component {
             .then((response) => {
                 console.log(response)
                 // console.log(userViewItem)
-                this.setState({userList: response.data})
+                // this.setState({userList: response.data})
             })
             .catch((err) => {
                 console.log(err)
@@ -107,7 +107,7 @@ export default class userListView extends Component {
         const userListElements = this.state.userList.map((user) => {
             return (
             <userItem
-                userId={user._id}
+                userId={user._userId}
                 onUserDeleteClick={this.onUserDeleteClick}
                 name={user.name}
                 age={user.age}
