@@ -15,7 +15,8 @@ export default class HelloWorld extends Component {
     *
     */
     state = {
-        message: 'Hello'
+        userList: [],
+        newUserName:'',
     }
 
     /* Step 4
@@ -25,10 +26,29 @@ export default class HelloWorld extends Component {
     *   setState can be run here as well
     *   -REMINDER remember `setState` it is an async function
     */
+    // componentDidMount() {
+    //     axios.get('/api/helloworld')
+    //         .then((res) => {
+    //             this.setState({message: res.data})
+    //         })
+    // }
+    // componentDidMount() {
+    //     axios.get('/getAllUsers')
+    //         .then((res) => {
+    //             this.setState({name: res.data})
+    //         })
+    // }
     componentDidMount() {
-        axios.get('/api/helloworld')
-            .then((res) => {
-                this.setState({message: res.data})
+        this.refreshUsers
+    }
+
+    refreshUsers()=>{
+        axios.get('/getAllUsers')
+            .then((response)=>{
+                console.log(response)
+                this.ListeningStateChangedEvent({
+                    userList: response.data
+                })
             })
     }
 
