@@ -51,7 +51,7 @@ userRouter.get("/", async (req, res) =>{
   //     console.log(error) //will show error in console
   //   })
   try {
-    const retrievedUsers = await shopApi.getAllUsers();
+    const retrievedUsers = await userApi.getAllUsers();
     console.log(retrievedUsers);
     res.status(200).json(retrievedUsers);
     return;

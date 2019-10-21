@@ -24,7 +24,7 @@ export default class userListView extends Component {
         axios.get("/api/user")
             .then((response) => {
                 console.log(response)
-                // this.setState({userList: response.data})
+                this.setState({userList: response.data})
             })
             .catch((err) => {
                 console.log(err)
@@ -106,8 +106,6 @@ export default class userListView extends Component {
             return (
             <userViewItem
                 userId={user._id}
-                onFavoriteClick={this.onFavoriteClick}
-                onUnFavoriteClick={this.onUnFavoriteClick}
                 onuserDeleteClick={this.onuserDeleteClick}
                 name={user.name}
                 description={user.description}
@@ -115,7 +113,7 @@ export default class userListView extends Component {
         })
         return (
         <div className="user-list-container">
-            <img className="hero-image" src="/hero.jpg"/>
+            
             <div className="header">user list</div>
 
             <input
@@ -123,8 +121,8 @@ export default class userListView extends Component {
                 name="newuserName"
                 placeholder="user Name"
                 required="required"
-                onChange={this.onNewusereNameChange}
-                value={this.state.newuserName}/>
+                onChange={this.onNewUsereNameChange}
+                value={this.state.newUserName}/>
             <button
                 onClick={() => this.createNewuser()}>Create user</button>
 
