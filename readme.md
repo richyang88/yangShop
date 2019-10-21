@@ -17,11 +17,11 @@ Yang Shop. This is an app I'm building for my parent's grocery store. It will he
 
 ## ERD
 
-![ERD](client/src/images/yangERD.png)
+![ERD](client/src/images/yangERD.jpg)
 
 
 ## Wireframes
 
-![Home](client/src/wireFrame/yangWire.jpg)
+![wireframe](client/src/imagesyangWire.jpg)
 
 
