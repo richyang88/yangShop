@@ -75,7 +75,7 @@ saleRouter.get("/sales", async (req, res) =>{
 saleRouter.post('/createSale', async (req, res) => {
   const saleData = req.body;
   try {
-    const saleCreated = await saleApi.createSale(saleData);
+    const saleCreated = await saleApi.addOneSale(saleData);
     res.status(201).json(saleCreated);
     return;
   } catch (e) {

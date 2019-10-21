@@ -13,16 +13,16 @@ export default class ShopListView extends Component {
 
     state = {
         saleList: [],
-        newsaleName: '',
+        newSaleName: Number,
     }
 
     componentDidMount() {
         // get all shops and update state 'shopList' with results
         //    route for get all shops is '/api/shop'
-        this.refreshsale()
+        this.refreshSale()
     }
 
-    refreshsale = () => {
+    refreshSale = () => {
         axios.get("/api/sales")
             .then((response) => {
                 console.log(response)
@@ -37,14 +37,14 @@ export default class ShopListView extends Component {
 
     createNewsale = () => {
         const newsale = {
-            name: this.state.newShopName,
+            name: this.state.newSaleName,
         };
-        axios.post('/api', newsale)
+        axios.post('/api/createSale', newsale)
             .then(response => {
                 console.log(response);
-                this.setState({newsaleName: ''})
+                this.setState({newSaleName: Number})
 
-                this.refreshsale()
+                this.refreshSale()
             })
         // create new shop using 'newShopName' in state
         //    route for creation is '/api/shop'
@@ -60,13 +60,13 @@ export default class ShopListView extends Component {
         axios.delete(`/api/shop/${shopId}`)
             .then((response) => {
                 console.log(response)
-                this.refreshShops()
+                this.refreshSale()
             })
     }
 
     onNewShopeNameChange = (event) => {
-        const newShopName = event.target.value;
-        this.setState({newShopName: newShopName})
+        const newSaleName = event.target.value;
+        this.setState({newSaleName: newSaleName})
     }
 
 
@@ -77,7 +77,7 @@ export default class ShopListView extends Component {
         const saleListElements = this.state.saleList.map((shop) => {
             return (
             <SaleViewItem
-                shopId={shop._id}
+                shopId={shop._SaleId}
                 sale={shop.sale}
                 onFavoriteClick={this.onFavoriteClick}
                 onUnFavoriteClick={this.onUnFavoriteClick}
@@ -98,7 +98,7 @@ export default class ShopListView extends Component {
             <input
                 type="string"
                 name="newsaleName"
-                placeholder="sale Name"
+                placeholder="sale amount"
                 required="required"
                 onChange={this.onNewShopeNameChange}
                 value={this.state.newShopName}/>

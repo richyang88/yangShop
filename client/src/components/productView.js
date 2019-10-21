@@ -37,7 +37,7 @@ export default class ShopListView extends Component {
 
     createNewproduct = () => {
         const newproduct = {
-            name: this.state.newShopName,
+            name: this.state.newproductName,
         };
         axios.post('/api/createPro', newproduct)
             .then(response => {
@@ -83,10 +83,6 @@ export default class ShopListView extends Component {
                 onUnFavoriteClick={this.onUnFavoriteClick}
                 onShopDeleteClick={this.onShopDeleteClick}
                 
-                name={shop.name}
-
-                age={shop.age}
-                gender={shop.gender}
                 
                 />)
         })

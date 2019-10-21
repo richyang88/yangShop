@@ -75,7 +75,7 @@ productRouter.get("/product", async (req, res) =>{
 productRouter.post('/createPro', async (req, res) => {
   const productData = req.body;
   try {
-    const productCreated = await productApi.createproduct(productData);
+    const productCreated = await productApi.addOneproduct(productData);
     res.status(201).json(productCreated);
     return;
   } catch (e) {

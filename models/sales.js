@@ -59,14 +59,14 @@ function deleteSaleById(sale_id){
 
 
 
-function createSale(){
-    return SaleModel.create({
+// function createSale(){
+//     return SaleModel.create({
 
-        sale: 330,
+//         sale: 330,
 
-    })
-}
- createSale();
+//     })
+// }
+//  createSale();
 
 /* Step 5
  *
@@ -79,6 +79,6 @@ module.exports = {
   getOneSale,
   deleteSaleById,
   updateSaleId,
-  createSale,
+//   createSale,
   addOneSale,
 }
