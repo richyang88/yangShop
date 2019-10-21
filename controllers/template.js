@@ -15,7 +15,7 @@ const express = require('express')
  * controller you need.
  * 
  */
-const templateApi = require('../models/template.js')
+// const templateApi = require('../models/template.js')
 const userApi = require('../models/users.js')
 
 /* Step 3 
@@ -42,14 +42,30 @@ const userRouter = express.Router()
 //   res.json(templateApi.getHelloWorldString())
 // })
 
-userRouter.get("/getAllUsers", function (req, res) {
-  userApi.getAllUsers()
-    .then((allUsers) => {
-      res.json({ allUsers })
-    })
-    .catch((error) => {
-      console.log(error) //will show error in console
-    })
+userRouter.get("/", async (req, res) =>{
+  // userApi.getAllUsers()
+  //   .then((allUsers) => {
+  //     res.json({ allUsers })
+  //   })
+  //   .catch((error) => {
+  //     console.log(error) //will show error in console
+  //   })
+  try {
+    const retrievedUsers = await shopApi.getAllUsers();
+    console.log(retrievedUsers);
+    res.status(200).json(retrievedUsers);
+    return;
+} catch(e) {
+    const message = `Failed to retrieve all shops.
+        Please check mongod service and make sure it is running`;
+    console.log(message)
+    console.error(e);
+     res.status(500).json({
+         error: e,
+         message,
+     });
+     return;
+}
 })
 
 // userRouter.get('/createUser', (req, res) => {
@@ -82,6 +98,6 @@ userRouter.post('/', async (req, res) => {
  *
  */
 module.exports = {
-  templateRouter,
+  // templateRouter,
   userRouter
 }

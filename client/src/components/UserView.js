@@ -17,14 +17,14 @@ export default class userListView extends Component {
     componentDidMount() {
         // get all users and update state 'userList' with results
         //    route for get all users is '/api/user'
-        this.refreshusers()
+        this.refreshUsers()
     }
 
-    refreshusers = () => {
+    refreshUsers = () => {
         axios.get("/api/user")
             .then((response) => {
                 console.log(response)
-                this.setState({userList: response.data})
+                // this.setState({userList: response.data})
             })
             .catch((err) => {
                 console.log(err)
@@ -33,14 +33,14 @@ export default class userListView extends Component {
 
     //  Stretch goal is to update page after every change
 
-    createNewuser = () => {
-        const newuser = {
-            name: this.state.newuserName,
+    createNewUer = () => {
+        const newUser = {
+            name: this.state.newUserName,
         };
-        axios.post('/api/user', newuser)
+        axios.post('/api/user', newUser)
             .then(response => {
                 console.log(response);
-                this.setState({newuserName: ''})
+                this.setState({newUserName: ''})
 
                 this.refreshusers()
             })
