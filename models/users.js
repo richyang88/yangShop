@@ -37,23 +37,29 @@ function getAllUsers(){
 
 
 //get single user
-function getUserById(userId){
+function getOneUser(user_id){
     return UserModel
-        .findById(userId)
+        .findById(user_id)
 }
 
-function deleteUserById(userId){
+//create user
+function addOneUser(name){
     return UserModel
-        .findOneAndDelete({_id: userId});
+        .create(name)
 }
 
 function updateUseryId(userId, userData){
     return UserModel.findOneAndUpdate({_id: userId}, userData);
 }
 
-function addOneUser(userId){
-    return UserModel.create(userId)
+function deleteUserById(userId){
+    return UserModel
+        .findByIdAndDelete({user_id});
 }
+
+
+
+
 
 // function createUser(){
 //     return UserModel.create({
@@ -72,7 +78,7 @@ function addOneUser(userId){
 module.exports = {
 //   getHelloWorldString,
   getAllUsers,
-  getUserById,
+  getOneUser,
   deleteUserById,
   updateUseryId,
 //   createUser,

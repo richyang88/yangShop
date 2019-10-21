@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import userViewItem from './UserItem';
+import userViewItems from './UserItem';
 
 
 export default class userListView extends Component {
@@ -24,7 +24,7 @@ export default class userListView extends Component {
         axios.get("/api/user")
             .then((response) => {
                 console.log(response)
-                console.log(userViewItem)
+                // console.log(userViewItem)
                 this.setState({userList: response.data})
             })
             .catch((err) => {
@@ -105,12 +105,16 @@ export default class userListView extends Component {
     render () {
         const userListElements = this.state.userList.map((user) => {
             return (
-            <userViewItem 
+            <userViewItems 
                 userId={user._id}
                 onUserDeleteClick={this.onUserDeleteClick}
                 name={user.name}
-                description={user.description}
-                isLiked={user.isLiked}/>)
+                age={user.age}
+                gender={user.gender}
+                // description={user.description}
+                // isLiked={user.isLiked}
+
+                />)
         })
         return (
         <div className="user-list-container">
