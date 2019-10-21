@@ -22,7 +22,7 @@ export default class UserItem extends Component {
 
             <i className="material-icons delete"
                 onClick={()=> onUserDeleteClick(userId)}>
-                clear
+                {/* clear */}
             </i>
         </div>);
     }

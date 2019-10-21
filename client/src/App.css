@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  background-image: url('./images/yangBackImg.jpeg');
+  background-position: center;
+  background-size: cover;
+  min-height: 70vh;
+  color: white;
 }
 
 .App-logo {
@@ -31,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+/* .user-list-container{
+  
+  background-color: red;
+} */

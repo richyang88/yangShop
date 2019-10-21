@@ -1,32 +1,31 @@
-// import './user.css'
+
+// import './shop.css'
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import userViewItems from './UserItem';
-import userItem from './UserItem';
+import UserViewItem from './UserItem';
 
 
-export default class userListView extends Component {
+export default class ShopListView extends Component {
     // initial state of component is empty array
-    //   fill userList with data from backend node server
+    //   fill shopList with data from backend node server
 
     state = {
         userList: [],
-        // newUserName: '',
+        newUserName: '',
     }
 
     componentDidMount() {
-        // get all users and update state 'userList' with results
-        //    route for get all users is '/api/user'
-        this.refreshUsers()
+        // get all shops and update state 'shopList' with results
+        //    route for get all shops is '/api/shop'
+        this.refreshUser()
     }
 
-    refreshUsers = () => {
-        axios.get("/api/user")
+    refreshUser = () => {
+        axios.get("/api")
             .then((response) => {
                 console.log(response)
-                // console.log(userViewItem)
-                // this.setState({userList: response.data})
+                this.setState({userList: response.data})
             })
             .catch((err) => {
                 console.log(err)
@@ -37,66 +36,36 @@ export default class userListView extends Component {
 
     createNewUser = () => {
         const newUser = {
-            name: this.state.newUserName,
+            name: this.state.newShopName,
         };
-        axios.post('/api/user', newUser)
+        axios.post('/api', newUser)
             .then(response => {
                 console.log(response);
                 this.setState({newUserName: ''})
 
-                this.refreshUsers()
+                this.refreshUser()
             })
-        // create new user using 'newuserName' in state
-        //    route for creation is '/api/user'
+        // create new shop using 'newShopName' in state
+        //    route for creation is '/api/shop'
         //    refresh page to see results
     }
 
-    // onFavoriteClick = (userId) => {
-    //     // update user isLiked status using existing user data and userId
-    //     //    route for update is /api/user/
-    //     //    refresh page to see results
-    //     const userToUpdate = this.state.userList.find((user) => {
-    //         if (userId === user._id) {
-    //             return true
-    //         }
-    //     })
-    //     userToUpdate.isLiked = true
-    //     axios.put(`/api/user/${userId}`, userToUpdate)
-    //         .then((response) => {
-    //             this.refreshusers()
-    //         })
-    // }
+    
 
-    // onUnFavoriteClick = (userId) => {
-    //     // update user isLiked status using existing user data and userId
-    //     //    route for update is /api/user/
-    //     //    refresh page to see results
-    //     const userToUpdate = this.state.userList.find((user) => {
-    //         if (userId === user._id) {
-    //             return true
-    //         }
-    //     })
-    //     userToUpdate.isLiked = false
-    //     axios.put(`/api/user/${userId}`, userToUpdate)
-    //         .then((response) => {
-    //             this.refreshusers()
-    //         })
-    // }
-
-    onUserDeleteClick = (userId) => {
-        // delete user using existing userId
-        //    route for delete is /api/user/
+    onShopDeleteClick = (shopId) => {
+        // delete shop using existing shopId
+        //    route for delete is /api/shop/
         //    refresh page to see results
-        axios.delete(`/api/user/${userId}`)
+        axios.delete(`/api/shop/${shopId}`)
             .then((response) => {
                 console.log(response)
-                this.refreshusers()
+                this.refreshShops()
             })
     }
 
-    onNewUsereNameChange = (event) => {
-        const newUserName = event.target.value;
-        this.setState({newUserName: newUserName})
+    onNewShopeNameChange = (event) => {
+        const newShopName = event.target.value;
+        this.setState({newShopName: newShopName})
     }
 
 
@@ -104,17 +73,17 @@ export default class userListView extends Component {
 
 
     render () {
-        const userListElements = this.state.userList.map((user) => {
+        const userListElements = this.state.userList.map((shop) => {
             return (
-            <userItem
-                userId={user._userId}
-                onUserDeleteClick={this.onUserDeleteClick}
-                name={user.name}
-                age={user.age}
-                gender={user.gender}
-                // description={user.description}
-                // isLiked={user.isLiked}
-
+            <UserViewItem
+                shopId={shop._id}
+                onFavoriteClick={this.onFavoriteClick}
+                onUnFavoriteClick={this.onUnFavoriteClick}
+                onShopDeleteClick={this.onShopDeleteClick}
+                name={shop.name}
+                age={shop.age}
+                gender={shop.gender}
+                
                 />)
         })
         return (
@@ -125,19 +94,14 @@ export default class userListView extends Component {
             <input
                 type="string"
                 name="newUserName"
-                placeholder="user Name"
+                placeholder="User Name"
                 required="required"
-                onChange={this.onNewUsereNameChange}
-                value={this.state.newUserName}/>
+                onChange={this.onNewShopeNameChange}
+                value={this.state.newShopName}/>
             <button
-                onClick={() => this.createNewUser()}>Create user</button>
-            <button
-                onClick={() => this.onUserDeleteClick()}>Delete user</button>
-            <button
-                onClick={() => this.onNewUsereNameChange()}>Edit user</button>
+                onClick={() => this.createNewUser()}>Create User</button>
 
             {userListElements}
-            <div></div>
 
         </div>)
     }
