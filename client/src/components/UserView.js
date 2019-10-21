@@ -37,7 +37,7 @@ export default class ShopListView extends Component {
 
     createNewUser = () => {
         const newUser = {
-            name: this.state.newShopName,
+            name: this.state.newUserName,
         };
         axios.post('/api/user', newUser)
             .then(response => {

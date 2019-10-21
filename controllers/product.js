@@ -51,7 +51,7 @@ productRouter.get("/product", async (req, res) =>{
   //     console.log(error) //will show error in console
   //   })
   try {
-    const retrievedProduct = await productApi.getAllProduct();
+    const retrievedProduct = await productApi.getAllProducts();
     console.log(retrievedProduct);
     res.status(200).json(retrievedProduct);
     return;

@@ -39,7 +39,7 @@ export default class ShopListView extends Component {
         const newproduct = {
             name: this.state.newShopName,
         };
-        axios.post('/api', newproduct)
+        axios.post('/api/createPro', newproduct)
             .then(response => {
                 console.log(response);
                 this.setState({newproductName: ''})

@@ -29,7 +29,7 @@ const productModel = mongoose.model('product', productSchema)
 // }
 
 //get all users
-function getAllproducts(){
+function getAllProducts(){
     return productModel.find();
 }
 
@@ -75,7 +75,7 @@ function createproduct(){
  */
 module.exports = {
 //   getHelloWorldString,
-  getAllproducts,
+  getAllProducts,
   getOneproduct,
   deleteproductById,
   updateproductId,
