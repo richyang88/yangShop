@@ -1,102 +1,103 @@
-// IMPORT EXPRESS
+/* Step 1 import express
+ *
+ */
 const express = require('express')
 
-// IMPORT API FROM MODELS
-const userApi = require('../models/user.js')
+/* Step 2
+ *
+ * Import the api files from the models
+ *
+ * TODO: change the file path to the models file you'll need to use.
+ * TODO: rename this from `templateApi` to something more sensible (e.g:
+ * `shopsAPI`)
+ *
+ * NOTE: You may need to import more than one API to create the 
+ * controller you need.
+ * 
+ */
+// const templateApi = require('../models/template.js')
+const userApi = require('../models/users.js')
 
-// CREATE NEW ROUTER TO CONTAIN ALL REQ HANDLERS
-const userRouter = express.Router({
-  // need to merge parameters for router to give access to parent
-  mergeParams: true
-})
+/* Step 3 
+ * 
+ * Create a new router.
+ *
+ * the router will "contain" all the request handlers that you define in this file.
+ * TODO: rename this from templateRouter to something that makes sense. (e.g:
+ * `shopRouter`)
+ */
+const templateRouter = express.Router()
+const userRouter = express.Router()
 
-// REQ HANDLERS ****************
+/* Step 4
+ * 
+ * TODO: Put all request handlers here
+ */
 
-// GET ALL USERS
-userRouter.get("/", function (req, res) {
-  userApi.getAllUsers()
-    .then((allUsers) => {
-      // RENDER NOT CREATED YET
-      // res.render("activitiesViewPath", {allActivities})
-      res.json({ allUsers })
-    })
-    .catch((error) => {
-      console.log(error) //will show error in console
-    })
-})
-
-// CREATE NEW USERS
-userRouter.post("/", function (req, res) {
-  const newUser = req.body
-  newUser.activity_id = req.params.activitiesId
-  userApi.addUser(newUser)
-    .then((users) => {
-      // res.redirect("/users")
-      res.json(users)
-    })
-    .catch((error) => {
-      console.log(error) //will show error in console
-    })
-})
-
-// CREATE USERS PATH
-userRouter.get("/new", function (req, res) {
-  userApi.addUser(req.params.activitiesId)
-    .then((getUsers) => {
-      // res.send({ getUsers })
-      res.json({ getUsers })
-    })
-    .catch((error) => {
-      console.log(error) //will show error in console
-    })
-})
-
-// RENDER CREATEFORM
-userRouter.get("/add", function (req, res) {
-  // RENDER NOT CREATED YET
-  // res.render("usersViewPath", {
-  // })
-  res.json("ok")
-})
-
-// GET ONE USER BY userId
-userRouter.get("/:usersId", function (req, res) {
-  userApi.getOneUser(req.params.usersId)
-    .then((usersFromDb) => {
-      // RENDER NOT CREATED YET
-      // res.render("usersViewPath", {_id: req.params.usersId, usersFromDb})
-      res.json(usersFromDb)
-    })
-    .catch((error) => {
-      console.log(error) //will show error in console
-    })
-})
-
-// // EDIT USER
-// userRouter.put("/:usersId", function (req, res) {
-//   userApi.updateUser(req.params.usersId, req.body)
-//     .then((users) => {
-//       // res.redirect("/users")
-//       res.json(users)
-//     })
-//     .catch((error) => {
-//       console.log(error) //will show error in console
-//     })
+/* Step 5
+ *
+ * TODO: delete this handler; it's just a sample
+ */
+// templateRouter.get('/', (req, res) => {
+//   res.json(templateApi.getHelloWorldString())
 // })
 
-// // DELETE USER
-// userRouter.delete("/:usersId", function (req, res) {
-//   userApi.deleteUser(req.params.usersId)
-//     .then((users) => {
-//       // res.redirect("/users") //redirects to "/", can use any url, etc.
-//       res.json(users)
-//     })
-//     .catch((error) => {
-//       console.log(error) //will show error in console
-//     })
+userRouter.get("/", async (req, res) =>{
+  // userApi.getAllUsers()
+  //   .then((allUsers) => {
+  //     res.json({ allUsers })
+  //   })
+  //   .catch((error) => {
+  //     console.log(error) //will show error in console
+  //   })
+  try {
+    const retrievedUsers = await userApi.getAllUsers();
+    console.log(retrievedUsers);
+    res.status(200).json(retrievedUsers);
+    return;
+} catch(e) {
+    const message = `Failed to retrieve all users.
+        Please check mongod service and make sure it is running`;
+    console.log(message)
+    console.error(e);
+     res.status(500).json({
+         error: e,
+         message,
+     });
+     return;
+}
+})
+
+// userRouter.get('/createUser', (req, res) => {
+//   res.json(userApi.createUser())
 // })
 
-//  IMPORT ROUTERS
+userRouter.post('/', async (req, res) => {
+  const userData = req.body;
+  try {
+    const userCreated = await userApi.createUser(userData);
+    res.status(201).json(userCreated);
+    return;
+  } catch (e) {
+    const message = `failed to create shop using data from request body
+    ${JSON.stringify(shopData, null, 4)}
+    , please check request body and try again`;
+    console.log(message);
+    console.log(e);
+    res.status(500).json({
+      error: e,
+      message,
+    });
+    return;
+  }
+})
+
+/* Step 6
+ *
+ * Export the router from the file.
+ *
+ */
 module.exports = {
+  // templateRouter,
   userRouter
 }
