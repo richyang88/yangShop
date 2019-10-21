@@ -51,7 +51,7 @@ saleRouter.get("/sales", async (req, res) =>{
   //     console.log(error) //will show error in console
   //   })
   try {
-    const retrievedsales = await saleApi.getAllsales();
+    const retrievedsales = await saleApi.getAllSales();
     console.log(retrievedsales);
     res.status(200).json(retrievedsales);
     return;
