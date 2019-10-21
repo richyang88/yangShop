@@ -79,6 +79,6 @@ module.exports = {
   getOneSale,
   deleteSaleById,
   updateSaleId,
-//   createSale,
+  createSale,
   addOneSale,
 }

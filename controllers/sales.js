@@ -42,7 +42,7 @@ const saleRouter = express.Router()
 //   res.json(templateApi.getHelloWorldString())
 // })
 
-saleRouter.get("/", async (req, res) =>{
+saleRouter.get("/sales", async (req, res) =>{
   // saleApi.getAllsales()
   //   .then((allsales) => {
   //     res.json({ allsales })
@@ -75,12 +75,12 @@ saleRouter.get("/", async (req, res) =>{
 saleRouter.post('/createSale', async (req, res) => {
   const saleData = req.body;
   try {
-    const saleCreated = await saleApi.createsale(saleData);
+    const saleCreated = await saleApi.createSale(saleData);
     res.status(201).json(saleCreated);
     return;
   } catch (e) {
     const message = `failed to create shop using data from request body
-    ${JSON.stringify(shopData, null, 4)}
+    ${JSON.stringify(saleData, null, 4)}
     , please check request body and try again`;
     console.log(message);
     console.log(e);

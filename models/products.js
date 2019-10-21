@@ -1,55 +1,84 @@
-// IMPORT MONGOOSE
-const mongoose = require('./connection.js')
-// const UserSchema = require("./user")
 
-// CREATE SCHEMEA
-const ActivitySchema = new mongoose.Schema({
-  activityName: String,
-  activityLevel: String,
-  // users_id: mongoose.Types.ObjectId,
-  // userInfo: [
-  //   {
-  //     type: Schema.Types.ObjectId,
-  //     ref: "UserSchema"
-  //   }
-  // ]
+const mongoose = require('./connection.js')
+
+/* Step 2
+ *
+ * TODO: create model schema 
+ * NOTE: skip this if you are not using mongoose
+ *
+ */
+const productSchema = new mongoose.Schema({ 
+ product: String,
 })
 
-// CREATE COLLECTION API
-const activityCollection = mongoose.model('Activity', ActivitySchema)
+/* Step 3
+ *
+ * TODO: create collection API
+ * NOTE: skip this if you are not using mongoose
+ *
+ */
+const productModel = mongoose.model('product', productSchema)
 
-// FUNCTIONS
+/* Step 4
+ *
+ * TODO: delete this it's just a sample
+ *
+ */
+// function getHelloWorldString() {
+//   return 'hello world'
+// }
 
-// GET/ read
-const getAllActivities = () => {
-  return activityCollection.find();
+//get all users
+function getAllproducts(){
+    return productModel.find();
 }
 
-// GET/ read
-const getOneActivity = (activityId) => {
-  return activityCollection.findById(activityId)
+
+//get single user
+function getOneproduct(product_id){
+    return productModel
+        .findById(product_id)
 }
 
-// CREATE/ post
-const addActivity = (newActivity) => {
-  return activityCollection.create(newActivity)
+//create user
+function addOneproduct(name){
+    return productModel
+        .create(name)
 }
 
-// UPDATE/ edit
-const updateActivity = (activityId, updatedActivity) => {
-  return activityCollection.updateOne({ _id: activityId }, updatedActivity)
+function updateproductId(productId, productData){
+    return productModel.findOneAndUpdate({_id: productId}, productData);
 }
 
-// DELETE
-const deleteActivity = (activityId) => {
-  return activityCollection.findByIdAndDelete(activityId)
+function deleteproductById(product_id){
+    return productModel
+        .findByIdAndDelete({product_id});
 }
 
-// EXPORT ALL FUNCTIONS
+
+
+
+
+function createproduct(){
+    return productModel.create({
+
+        product: "Rice",
+
+    })
+}
+ createproduct();
+
+/* Step 5
+ *
+ * TODO: export all functions from this file by adding their names as keys to this
+ * object
+ */
 module.exports = {
-  addActivity,
-  deleteActivity,
-  getAllActivities,
-  getOneActivity,
-  updateActivity
+//   getHelloWorldString,
+  getAllproducts,
+  getOneproduct,
+  deleteproductById,
+  updateproductId,
+  createproduct,
+  addOneproduct,
 }

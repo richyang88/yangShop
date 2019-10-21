@@ -1,10 +1,9 @@
 
 // import './shop.css'
 import React, { Component } from 'react'
-import { Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios'
 
-import UserViewItem from './UserItem';
+import SaleViewItem from './saleItem';
 
 
 export default class ShopListView extends Component {
@@ -23,7 +22,7 @@ export default class ShopListView extends Component {
     }
 
     refreshUser = () => {
-        axios.get("/api")
+        axios.get("/api/sale")
             .then((response) => {
                 console.log(response)
                 this.setState({userList: response.data})
@@ -76,7 +75,7 @@ export default class ShopListView extends Component {
     render () {
         const userListElements = this.state.userList.map((shop) => {
             return (
-            <UserViewItem
+            <SaleViewItem
                 shopId={shop._id}
                 onFavoriteClick={this.onFavoriteClick}
                 onUnFavoriteClick={this.onUnFavoriteClick}
@@ -105,9 +104,7 @@ export default class ShopListView extends Component {
                 onClick={() => this.createNewUser()}>Create User</button>
 
             {userListElements}
-            <Link to={`/sales`}>
-              {"Sales"}
-            </Link>
+
         </div>)
     }
 }

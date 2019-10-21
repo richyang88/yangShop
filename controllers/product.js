@@ -42,7 +42,7 @@ const productRouter = express.Router()
 //   res.json(templateApi.getHelloWorldString())
 // })
 
-productRouter.get("/", async (req, res) =>{
+productRouter.get("/product", async (req, res) =>{
   // productApi.getAllproducts()
   //   .then((allproducts) => {
   //     res.json({ allproducts })
@@ -72,7 +72,7 @@ productRouter.get("/", async (req, res) =>{
 //   res.json(productApi.createproduct())
 // })
 
-productRouter.post('/', async (req, res) => {
+productRouter.post('/createPro', async (req, res) => {
   const productData = req.body;
   try {
     const productCreated = await productApi.createproduct(productData);
