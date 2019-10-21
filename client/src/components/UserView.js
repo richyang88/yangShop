@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import userViewItems from './UserItem';
+import userItem from './UserItem';
 
 
 export default class userListView extends Component {
@@ -105,7 +106,7 @@ export default class userListView extends Component {
     render () {
         const userListElements = this.state.userList.map((user) => {
             return (
-            <userViewItems 
+            <userItem
                 userId={user._id}
                 onUserDeleteClick={this.onUserDeleteClick}
                 name={user.name}
@@ -136,6 +137,7 @@ export default class userListView extends Component {
                 onClick={() => this.onNewUsereNameChange()}>Edit user</button>
 
             {userListElements}
+            <div></div>
 
         </div>)
     }

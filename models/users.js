@@ -52,7 +52,7 @@ function updateUseryId(userId, userData){
     return UserModel.findOneAndUpdate({_id: userId}, userData);
 }
 
-function deleteUserById(userId){
+function deleteUserById(user_id){
     return UserModel
         .findByIdAndDelete({user_id});
 }
