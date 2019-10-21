@@ -75,7 +75,7 @@ userRouter.get("/", async (req, res) =>{
 userRouter.post('/user', async (req, res) => {
   const userData = req.body;
   try {
-    const userCreated = await userApi.createUser(userData);
+    const userCreated = await userApi.addOneUser(userData);
     res.status(201).json(userCreated);
     return;
   } catch (e) {

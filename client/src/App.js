@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // import HelloWorld from './components/HelloWorld.js'
 import User from './components/UserView.js'
 import Sale from './components/saleView.js'
-// import User from './components/UserView.js'
+import Product from './components/productView.js'
 import './App.css';
 
 function App() {
@@ -16,7 +16,8 @@ function App() {
         <Switch>
           {/* <Route exact path="/" component={HelloWorld}/> */}
           <Route exact path="/" component={User }/>
-          <Route exact path="/api/sales" component={Sale }/>
+          <Route path="/api/sales" component={Sale }/>
+          <Route path="/api/product" component={Product }/>
         </Switch>
       </Router>
     </div>

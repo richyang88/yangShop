@@ -61,14 +61,14 @@ function deleteUserById(user_id){
 
 
 
-function createUser(){
-    return UserModel.create({
-        name: "Alex",
-        age: 33,
-        gender: "Male"
-    })
-}
- createUser();
+// function createUser(){
+//     return UserModel.create({
+//         name: "Alex",
+//         age: 33,
+//         gender: "Male"
+//     })
+// }
+//  createUser();
 
 /* Step 5
  *
@@ -81,6 +81,6 @@ module.exports = {
   getOneUser,
   deleteUserById,
   updateUseryId,
-  createUser,
+//   createUser,
   addOneUser,
 }
