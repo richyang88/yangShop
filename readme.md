@@ -22,6 +22,6 @@ Yang Shop. This is an app I'm building for my parent's grocery store. It will he
 
 ## Wireframes
 
-![wireframe](client/src/imagesyangWire.jpg)
+![wireframe](client/src/images/yangWire.jpg)
 
 
