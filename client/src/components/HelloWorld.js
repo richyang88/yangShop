@@ -39,16 +39,30 @@ export default class HelloWorld extends Component {
     //         })
     // }
     componentDidMount() {
-        this.refreshUsers
+        this.refreshUsers()
     }
 
-    refreshUsers()=>{
+    // refreshUsers=()=>{
+    //     axios.get('/getAllUsers')
+    //         .then((response)=>{
+    //             console.log(response)
+    //             this.setState({
+    //                 userList: response.data
+    //             })
+    //             .catch((err)=>{
+    //                 console.log(err)
+    //             })
+    //         })
+    // }
+
+    refreshUsers=()=>{
         axios.get('/getAllUsers')
             .then((response)=>{
                 console.log(response)
-                this.ListeningStateChangedEvent({
-                    userList: response.data
-                })
+                this.setState({userList: response.data})
+            })
+            .catch((err)=>{
+                console.log(err)
             })
     }
 
